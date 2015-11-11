@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rest="http://www.appleframework.com/schema/rest"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.appleframework.com/schema/rest http://www.appleframework.com/schema/rest/rest-1.0.xsd
+   	 http://www.springframework.org/schema/context
+   	 http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!--① 扫描Spring Bean-->
+    <context:component-scan base-package="com.appleframework.ums.server.collector"/>
+	
+    <!-- 启动Rop框架 -->
+    <rest:annotation-driven
+            id="router"
+            ext-error-base-names="i18n/rest/ums-server-collector"
+            service-timeout-seconds="10"
+            thread-ferry-class="com.appleframework.rest.sample.SampleThreadFerry"
+            upload-file-max-size="10"
+            upload-file-types="png,gif"
+            core-pool-size="200"
+            max-pool-size="500"
+            queue-capacity="50"
+            keep-alive-seconds="300" />
+	
+    <!--注册拦截器，可配置多个
+    <rest:interceptors>
+        <bean class="com.rest.sample.ReservedUserNameInterceptor"/>
+    </rest:interceptors>-->
+
+    <!--注册监听器，可配置多具-->
+    <rest:listeners>
+        <bean class="com.appleframework.rest.sample.SamplePostInitializeEventListener"/>
+        <bean class="com.appleframework.rest.sample.SamplePreDoServiceEventListener"/>
+        <bean class="com.appleframework.rest.sample.SampleAfterDoServiceEventListener"/>
+    </rest:listeners>
+
+    <!--自定义method,appKey等这些系统级参数的参数名-->
+    <rest:sysparams
+			method-param-name="method"
+			content-param-name="content"
+	/>
+            
+</beans>
