@@ -43,6 +43,7 @@ public class Convert {
 		clientData.setUserId(vo.getUserid());
 		clientData.setVersion(vo.getVersion());
 		clientData.setWifiMac(vo.getWifimac());
+		clientData.setChannel(vo.getChannel());
 		return clientData;
 	}
 
@@ -73,6 +74,7 @@ public class Convert {
 		clientData.setUserId(request.getUserid());
 		clientData.setVersion(request.getVersion());
 		clientData.setWifiMac(request.getWifimac());
+		clientData.setChannel(request.getChannel());
 		return clientData;
 	}
 	
