@@ -341,5 +341,6 @@
 
 	<modules>
 		<module>apple-ums-server-core</module>
+		<module>apple-ums-server-collector</module>
 	</modules>
 </project>
