@@ -2,7 +2,7 @@ package com.appleframework.ums.server.collector.request;
 
 import com.appleframework.rest.AbstractRestRequest;
 
-public class PosttagRequest extends AbstractRestRequest {
+public class PostTagRequest extends AbstractRestRequest {
 
 	/*{
 	    "appkey": "e739b6f55077da0038c93978863d811c",

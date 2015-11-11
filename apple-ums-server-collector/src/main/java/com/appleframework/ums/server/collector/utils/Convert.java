@@ -6,7 +6,7 @@ import com.appleframework.ums.server.collector.request.PostActivityLogRequest;
 import com.appleframework.ums.server.collector.request.PostClientDataRequest;
 import com.appleframework.ums.server.collector.request.PostEventRequest;
 import com.appleframework.ums.server.collector.request.PostUseridRequest;
-import com.appleframework.ums.server.collector.request.PosttagRequest;
+import com.appleframework.ums.server.collector.request.PostTagRequest;
 import com.appleframework.ums.server.core.model.ActivityLog;
 import com.appleframework.ums.server.core.model.ClientData;
 import com.appleframework.ums.server.core.model.ClientTag;
@@ -101,10 +101,11 @@ public class Convert {
 		eventLog.setLabel(request.getLabel());
 		eventLog.setUserId(request.getUserid());
 		eventLog.setVersion(request.getVersion());
+		eventLog.setTime(request.getTime());
 		return eventLog;
 	}
 	
-	public static ClientTag convert(PosttagRequest request) {
+	public static ClientTag convert(PostTagRequest request) {
 		ClientTag clientTag = new ClientTag();
 		clientTag.setAppKey(request.getAppkey());
 		clientTag.setDeviceId(request.getDeviceid());

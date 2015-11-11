@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import com.appleframework.rest.annotation.ServiceMethod;
 import com.appleframework.rest.annotation.ServiceMethodBean;
 import com.appleframework.rest.response.SuccessResponse;
-import com.appleframework.ums.server.collector.request.PosttagRequest;
+import com.appleframework.ums.server.collector.request.PostTagRequest;
 import com.appleframework.ums.server.collector.utils.Convert;
 
 /**
@@ -17,12 +17,12 @@ import com.appleframework.ums.server.collector.utils.Convert;
  * @version 1.0
  */
 @ServiceMethodBean
-public class PosttagController extends BaseController {
+public class PostTagController extends BaseController {
 
-	private static Logger logger = Logger.getLogger(PosttagController.class);
+	private static Logger logger = Logger.getLogger(PostTagController.class);
 
 	@ServiceMethod(method = "/ums/posttag")
-	public Object postEvent(PosttagRequest request) {
+	public Object postEvent(PostTagRequest request) {
 		SuccessResponse response = new SuccessResponse();
 		logger.info(request);
 		messageProducer.sendObject(Convert.convert(request));
