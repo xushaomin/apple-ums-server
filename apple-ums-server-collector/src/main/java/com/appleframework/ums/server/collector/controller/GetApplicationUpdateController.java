@@ -1,5 +1,7 @@
 package com.appleframework.ums.server.collector.controller;
 
+import org.apache.log4j.Logger;
+
 import com.appleframework.rest.annotation.ServiceMethod;
 import com.appleframework.rest.annotation.ServiceMethodBean;
 import com.appleframework.ums.server.collector.request.GetApplicationUpdateRequest;
@@ -15,13 +17,15 @@ import com.appleframework.ums.server.collector.response.GetApplicationUpdateResp
  */
 @ServiceMethodBean
 public class GetApplicationUpdateController {
+	
+	private static Logger logger = Logger.getLogger(GetApplicationUpdateController.class);
 
 	@ServiceMethod(method = "/ums/getApplicationUpdate")
 	public Object getApplicationUpdate(GetApplicationUpdateRequest request) {
 		GetApplicationUpdateResponse response = new GetApplicationUpdateResponse();
 		response.setFlag(-7);
 		response.setMsg("no new version");
-		System.out.println(request.toString());
+		logger.info(request);
 		return response;
 	}
 
