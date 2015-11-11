@@ -151,23 +151,18 @@
 			  	<version>${qos.version}</version>
 			</dependency>
 			
-			<!-- security -->
-			<dependency>
-				<groupId>com.appleframework.security</groupId>
-  				<artifactId>apple-security-core</artifactId>
-  				<version>${security.version}</version>
-			</dependency>
-			<dependency>
-			  	<groupId>com.appleframework.security</groupId>
-			  	<artifactId>apple-security-auth</artifactId>
-			  	<version>${security.version}</version>
-			</dependency>
-			
 			<!-- logs -->
 			<dependency>
 				<groupId>com.appleframework.logs</groupId>
   				<artifactId>apple-logs-api-log4j</artifactId>
   				<version>${logs.version}</version>
+			</dependency>
+			
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+  				<artifactId>spring-test</artifactId>
+  				<version>${spring.version}</version>
 			</dependency>
 
 			<!-- bean工具类 -->
@@ -342,5 +337,6 @@
 	<modules>
 		<module>apple-ums-server-core</module>
 		<module>apple-ums-server-collector</module>
+		<module>apple-ums-server-storage</module>
 	</modules>
 </project>
