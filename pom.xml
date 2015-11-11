@@ -314,7 +314,6 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -322,24 +321,6 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptor>src/main/assembly/assembly.xml</descriptor>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-
 		</plugins>
 
 	</build>
