@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.appleframework.ums</groupId>
 		<artifactId>apple-ums-server</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1.BETA</version>
 	</parent>
 	<artifactId>apple-ums-server-core</artifactId>
 	<name>apple-ums-server-core</name>
