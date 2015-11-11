@@ -65,6 +65,8 @@ public class ClientDataVo implements Serializable {
 
 	private String longitude;
 	private String latitude;
+	
+	private String channel;
 
 	public String getPlatform() {
 		return platform;
@@ -265,16 +267,25 @@ public class ClientDataVo implements Serializable {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
+	
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
 
 	@Override
 	public String toString() {
-		return "ClientData [platform=" + platform + ", ismobiledevice=" + ismobiledevice + ", havewifi=" + havewifi
+		return "ClientDataVo [platform=" + platform + ", ismobiledevice=" + ismobiledevice + ", havewifi=" + havewifi
 				+ ", imei=" + imei + ", userid=" + userid + ", appkey=" + appkey + ", resolution=" + resolution
 				+ ", network=" + network + ", version=" + version + ", os_version=" + os_version + ", deviceid="
 				+ deviceid + ", havebt=" + havebt + ", phonetype=" + phonetype + ", havegps=" + havegps
 				+ ", modulename=" + modulename + ", time=" + time + ", wifimac=" + wifimac + ", devicename="
 				+ devicename + ", mccmnc=" + mccmnc + ", imsi=" + imsi + ", language=" + language + ", havegravity="
-				+ havegravity + ", salt=" + salt + ", longitude=" + longitude + ", latitude=" + latitude + "]";
+				+ havegravity + ", salt=" + salt + ", longitude=" + longitude + ", latitude=" + latitude + ", channel="
+				+ channel + "]";
 	}
 	
 }
