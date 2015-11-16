@@ -38,6 +38,8 @@ public class ClientData implements Serializable {
 
 	private String longitude;
 	private String latitude;
+	
+	private Integer isJailBroken;
 
 	public String getPlatform() {
 		return platform;
@@ -245,6 +247,14 @@ public class ClientData implements Serializable {
 
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
+	}
+
+	public Integer getIsJailBroken() {
+		return isJailBroken;
+	}
+
+	public void setIsJailBroken(Integer isJailBroken) {
+		this.isJailBroken = isJailBroken;
 	}
 
 	@Override
