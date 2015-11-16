@@ -67,6 +67,7 @@ public class ClientDataVo implements Serializable {
 	private String latitude;
 	
 	private String channel;
+	private Integer isjailbroken;
 
 	public String getPlatform() {
 		return platform;
@@ -274,6 +275,14 @@ public class ClientDataVo implements Serializable {
 
 	public void setChannel(String channel) {
 		this.channel = channel;
+	}
+
+	public Integer getIsjailbroken() {
+		return isjailbroken;
+	}
+
+	public void setIsjailbroken(Integer isjailbroken) {
+		this.isjailbroken = isjailbroken;
 	}
 
 	@Override
