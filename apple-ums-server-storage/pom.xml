@@ -12,7 +12,7 @@
 	<name>apple-ums-server-storage</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-
+		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,7 +28,10 @@
 			<groupId>com.appleframework.jms</groupId>
 			<artifactId>apple-jms-kafka</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.appleframework.orm</groupId>
+			<artifactId>apple-orm-mybatis</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.appleframework.config</groupId>
 			<artifactId>apple-config-diamond</artifactId>
@@ -48,5 +51,15 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+			
 	</dependencies>
 </project>
