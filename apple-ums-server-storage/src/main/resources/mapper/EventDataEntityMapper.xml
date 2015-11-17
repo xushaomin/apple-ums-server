@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ums.server.storage.dao.EventDataEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.EventDataEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="deviceid" property="deviceid" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="event" property="event" jdbcType="VARCHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="attachment" property="attachment" jdbcType="VARCHAR" />
+    <result column="clientdate" property="clientdate" jdbcType="TIMESTAMP" />
+    <result column="productkey" property="productkey" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="event_id" property="eventId" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="insertdate" property="insertdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, deviceid, category, event, label, attachment, clientdate, productkey, num, event_id, 
+    version, insertdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ums_eventdata
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ums_eventdata
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_eventdata (deviceid, category, event, 
+      label, attachment, clientdate, 
+      productkey, num, event_id, 
+      version, insertdate)
+    values (#{deviceid,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{event,jdbcType=VARCHAR}, 
+      #{label,jdbcType=VARCHAR}, #{attachment,jdbcType=VARCHAR}, #{clientdate,jdbcType=TIMESTAMP}, 
+      #{productkey,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{eventId,jdbcType=INTEGER}, 
+      #{version,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_eventdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deviceid != null" >
+        deviceid,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="event != null" >
+        event,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+      <if test="clientdate != null" >
+        clientdate,
+      </if>
+      <if test="productkey != null" >
+        productkey,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="eventId != null" >
+        event_id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="insertdate != null" >
+        insertdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="event != null" >
+        #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="clientdate != null" >
+        #{clientdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productkey != null" >
+        #{productkey,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null" >
+        #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
+    update ums_eventdata
+    <set >
+      <if test="deviceid != null" >
+        deviceid = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="event != null" >
+        event = #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="clientdate != null" >
+        clientdate = #{clientdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productkey != null" >
+        productkey = #{productkey,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="eventId != null" >
+        event_id = #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null" >
+        insertdate = #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
+    update ums_eventdata
+    set deviceid = #{deviceid,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      event = #{event,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=VARCHAR},
+      clientdate = #{clientdate,jdbcType=TIMESTAMP},
+      productkey = #{productkey,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      event_id = #{eventId,jdbcType=INTEGER},
+      version = #{version,jdbcType=VARCHAR},
+      insertdate = #{insertdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

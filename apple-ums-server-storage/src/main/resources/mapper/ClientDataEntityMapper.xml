@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ums.server.storage.dao.ClientDataEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.ClientDataEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serviceversion" property="serviceversion" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="osversion" property="osversion" jdbcType="VARCHAR" />
+    <result column="osaddtional" property="osaddtional" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="resolution" property="resolution" jdbcType="VARCHAR" />
+    <result column="ismobiledevice" property="ismobiledevice" jdbcType="VARCHAR" />
+    <result column="devicename" property="devicename" jdbcType="VARCHAR" />
+    <result column="deviceid" property="deviceid" jdbcType="VARCHAR" />
+    <result column="defaultbrowser" property="defaultbrowser" jdbcType="VARCHAR" />
+    <result column="javasupport" property="javasupport" jdbcType="VARCHAR" />
+    <result column="flashversion" property="flashversion" jdbcType="VARCHAR" />
+    <result column="modulename" property="modulename" jdbcType="VARCHAR" />
+    <result column="imei" property="imei" jdbcType="VARCHAR" />
+    <result column="imsi" property="imsi" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="havegps" property="havegps" jdbcType="VARCHAR" />
+    <result column="havebt" property="havebt" jdbcType="VARCHAR" />
+    <result column="havewifi" property="havewifi" jdbcType="VARCHAR" />
+    <result column="havegravity" property="havegravity" jdbcType="VARCHAR" />
+    <result column="wifimac" property="wifimac" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="clientip" property="clientip" jdbcType="VARCHAR" />
+    <result column="productkey" property="productkey" jdbcType="VARCHAR" />
+    <result column="service_supplier" property="serviceSupplier" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="street" property="street" jdbcType="VARCHAR" />
+    <result column="streetno" property="streetno" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="network" property="network" jdbcType="VARCHAR" />
+    <result column="isjailbroken" property="isjailbroken" jdbcType="INTEGER" />
+    <result column="insertdate" property="insertdate" jdbcType="TIMESTAMP" />
+    <result column="useridentifier" property="useridentifier" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serviceversion, name, version, platform, osversion, osaddtional, language, resolution, 
+    ismobiledevice, devicename, deviceid, defaultbrowser, javasupport, flashversion, 
+    modulename, imei, imsi, salt, havegps, havebt, havewifi, havegravity, wifimac, latitude, 
+    longitude, date, clientip, productkey, service_supplier, country, region, city, street, 
+    streetno, postcode, network, isjailbroken, insertdate, useridentifier
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ums_clientdata
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ums_clientdata
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_clientdata (serviceversion, name, version, 
+      platform, osversion, osaddtional, 
+      language, resolution, ismobiledevice, 
+      devicename, deviceid, defaultbrowser, 
+      javasupport, flashversion, modulename, 
+      imei, imsi, salt, havegps, 
+      havebt, havewifi, havegravity, 
+      wifimac, latitude, longitude, 
+      date, clientip, productkey, 
+      service_supplier, country, region, 
+      city, street, streetno, 
+      postcode, network, isjailbroken, 
+      insertdate, useridentifier)
+    values (#{serviceversion,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=VARCHAR}, #{osversion,jdbcType=VARCHAR}, #{osaddtional,jdbcType=VARCHAR}, 
+      #{language,jdbcType=VARCHAR}, #{resolution,jdbcType=VARCHAR}, #{ismobiledevice,jdbcType=VARCHAR}, 
+      #{devicename,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR}, #{defaultbrowser,jdbcType=VARCHAR}, 
+      #{javasupport,jdbcType=VARCHAR}, #{flashversion,jdbcType=VARCHAR}, #{modulename,jdbcType=VARCHAR}, 
+      #{imei,jdbcType=VARCHAR}, #{imsi,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{havegps,jdbcType=VARCHAR}, 
+      #{havebt,jdbcType=VARCHAR}, #{havewifi,jdbcType=VARCHAR}, #{havegravity,jdbcType=VARCHAR}, 
+      #{wifimac,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{clientip,jdbcType=VARCHAR}, #{productkey,jdbcType=VARCHAR}, 
+      #{serviceSupplier,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{streetno,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{network,jdbcType=VARCHAR}, #{isjailbroken,jdbcType=INTEGER}, 
+      #{insertdate,jdbcType=TIMESTAMP}, #{useridentifier,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_clientdata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceversion != null" >
+        serviceversion,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="osversion != null" >
+        osversion,
+      </if>
+      <if test="osaddtional != null" >
+        osaddtional,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="resolution != null" >
+        resolution,
+      </if>
+      <if test="ismobiledevice != null" >
+        ismobiledevice,
+      </if>
+      <if test="devicename != null" >
+        devicename,
+      </if>
+      <if test="deviceid != null" >
+        deviceid,
+      </if>
+      <if test="defaultbrowser != null" >
+        defaultbrowser,
+      </if>
+      <if test="javasupport != null" >
+        javasupport,
+      </if>
+      <if test="flashversion != null" >
+        flashversion,
+      </if>
+      <if test="modulename != null" >
+        modulename,
+      </if>
+      <if test="imei != null" >
+        imei,
+      </if>
+      <if test="imsi != null" >
+        imsi,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="havegps != null" >
+        havegps,
+      </if>
+      <if test="havebt != null" >
+        havebt,
+      </if>
+      <if test="havewifi != null" >
+        havewifi,
+      </if>
+      <if test="havegravity != null" >
+        havegravity,
+      </if>
+      <if test="wifimac != null" >
+        wifimac,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="clientip != null" >
+        clientip,
+      </if>
+      <if test="productkey != null" >
+        productkey,
+      </if>
+      <if test="serviceSupplier != null" >
+        service_supplier,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="street != null" >
+        street,
+      </if>
+      <if test="streetno != null" >
+        streetno,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="network != null" >
+        network,
+      </if>
+      <if test="isjailbroken != null" >
+        isjailbroken,
+      </if>
+      <if test="insertdate != null" >
+        insertdate,
+      </if>
+      <if test="useridentifier != null" >
+        useridentifier,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceversion != null" >
+        #{serviceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="osversion != null" >
+        #{osversion,jdbcType=VARCHAR},
+      </if>
+      <if test="osaddtional != null" >
+        #{osaddtional,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="resolution != null" >
+        #{resolution,jdbcType=VARCHAR},
+      </if>
+      <if test="ismobiledevice != null" >
+        #{ismobiledevice,jdbcType=VARCHAR},
+      </if>
+      <if test="devicename != null" >
+        #{devicename,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultbrowser != null" >
+        #{defaultbrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="javasupport != null" >
+        #{javasupport,jdbcType=VARCHAR},
+      </if>
+      <if test="flashversion != null" >
+        #{flashversion,jdbcType=VARCHAR},
+      </if>
+      <if test="modulename != null" >
+        #{modulename,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null" >
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="havegps != null" >
+        #{havegps,jdbcType=VARCHAR},
+      </if>
+      <if test="havebt != null" >
+        #{havebt,jdbcType=VARCHAR},
+      </if>
+      <if test="havewifi != null" >
+        #{havewifi,jdbcType=VARCHAR},
+      </if>
+      <if test="havegravity != null" >
+        #{havegravity,jdbcType=VARCHAR},
+      </if>
+      <if test="wifimac != null" >
+        #{wifimac,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientip != null" >
+        #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="productkey != null" >
+        #{productkey,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceSupplier != null" >
+        #{serviceSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="streetno != null" >
+        #{streetno,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="network != null" >
+        #{network,jdbcType=VARCHAR},
+      </if>
+      <if test="isjailbroken != null" >
+        #{isjailbroken,jdbcType=INTEGER},
+      </if>
+      <if test="insertdate != null" >
+        #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useridentifier != null" >
+        #{useridentifier,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
+    update ums_clientdata
+    <set >
+      <if test="serviceversion != null" >
+        serviceversion = #{serviceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="osversion != null" >
+        osversion = #{osversion,jdbcType=VARCHAR},
+      </if>
+      <if test="osaddtional != null" >
+        osaddtional = #{osaddtional,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="resolution != null" >
+        resolution = #{resolution,jdbcType=VARCHAR},
+      </if>
+      <if test="ismobiledevice != null" >
+        ismobiledevice = #{ismobiledevice,jdbcType=VARCHAR},
+      </if>
+      <if test="devicename != null" >
+        devicename = #{devicename,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        deviceid = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultbrowser != null" >
+        defaultbrowser = #{defaultbrowser,jdbcType=VARCHAR},
+      </if>
+      <if test="javasupport != null" >
+        javasupport = #{javasupport,jdbcType=VARCHAR},
+      </if>
+      <if test="flashversion != null" >
+        flashversion = #{flashversion,jdbcType=VARCHAR},
+      </if>
+      <if test="modulename != null" >
+        modulename = #{modulename,jdbcType=VARCHAR},
+      </if>
+      <if test="imei != null" >
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        imsi = #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="havegps != null" >
+        havegps = #{havegps,jdbcType=VARCHAR},
+      </if>
+      <if test="havebt != null" >
+        havebt = #{havebt,jdbcType=VARCHAR},
+      </if>
+      <if test="havewifi != null" >
+        havewifi = #{havewifi,jdbcType=VARCHAR},
+      </if>
+      <if test="havegravity != null" >
+        havegravity = #{havegravity,jdbcType=VARCHAR},
+      </if>
+      <if test="wifimac != null" >
+        wifimac = #{wifimac,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientip != null" >
+        clientip = #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="productkey != null" >
+        productkey = #{productkey,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceSupplier != null" >
+        service_supplier = #{serviceSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null" >
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="streetno != null" >
+        streetno = #{streetno,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="network != null" >
+        network = #{network,jdbcType=VARCHAR},
+      </if>
+      <if test="isjailbroken != null" >
+        isjailbroken = #{isjailbroken,jdbcType=INTEGER},
+      </if>
+      <if test="insertdate != null" >
+        insertdate = #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useridentifier != null" >
+        useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
+    update ums_clientdata
+    set serviceversion = #{serviceversion,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      osversion = #{osversion,jdbcType=VARCHAR},
+      osaddtional = #{osaddtional,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR},
+      resolution = #{resolution,jdbcType=VARCHAR},
+      ismobiledevice = #{ismobiledevice,jdbcType=VARCHAR},
+      devicename = #{devicename,jdbcType=VARCHAR},
+      deviceid = #{deviceid,jdbcType=VARCHAR},
+      defaultbrowser = #{defaultbrowser,jdbcType=VARCHAR},
+      javasupport = #{javasupport,jdbcType=VARCHAR},
+      flashversion = #{flashversion,jdbcType=VARCHAR},
+      modulename = #{modulename,jdbcType=VARCHAR},
+      imei = #{imei,jdbcType=VARCHAR},
+      imsi = #{imsi,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      havegps = #{havegps,jdbcType=VARCHAR},
+      havebt = #{havebt,jdbcType=VARCHAR},
+      havewifi = #{havewifi,jdbcType=VARCHAR},
+      havegravity = #{havegravity,jdbcType=VARCHAR},
+      wifimac = #{wifimac,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      clientip = #{clientip,jdbcType=VARCHAR},
+      productkey = #{productkey,jdbcType=VARCHAR},
+      service_supplier = #{serviceSupplier,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR},
+      streetno = #{streetno,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      network = #{network,jdbcType=VARCHAR},
+      isjailbroken = #{isjailbroken,jdbcType=INTEGER},
+      insertdate = #{insertdate,jdbcType=TIMESTAMP},
+      useridentifier = #{useridentifier,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

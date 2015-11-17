@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ums.server.storage.dao.ClientUsingLogEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.ClientUsingLogEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="VARCHAR" />
+    <result column="start_millis" property="startMillis" jdbcType="TIMESTAMP" />
+    <result column="end_millis" property="endMillis" jdbcType="TIMESTAMP" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="activities" property="activities" jdbcType="VARCHAR" />
+    <result column="appkey" property="appkey" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="insertdate" property="insertdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, session_id, start_millis, end_millis, duration, activities, appkey, version, 
+    insertdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ums_clientusinglog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ums_clientusinglog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.ClientUsingLogEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_clientusinglog (session_id, start_millis, end_millis, 
+      duration, activities, appkey, 
+      version, insertdate)
+    values (#{sessionId,jdbcType=VARCHAR}, #{startMillis,jdbcType=TIMESTAMP}, #{endMillis,jdbcType=TIMESTAMP}, 
+      #{duration,jdbcType=INTEGER}, #{activities,jdbcType=VARCHAR}, #{appkey,jdbcType=VARCHAR}, 
+      #{version,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.ClientUsingLogEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_clientusinglog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="startMillis != null" >
+        start_millis,
+      </if>
+      <if test="endMillis != null" >
+        end_millis,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="activities != null" >
+        activities,
+      </if>
+      <if test="appkey != null" >
+        appkey,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="insertdate != null" >
+        insertdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="startMillis != null" >
+        #{startMillis,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endMillis != null" >
+        #{endMillis,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="activities != null" >
+        #{activities,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null" >
+        #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null" >
+        #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.ClientUsingLogEntity" >
+    update ums_clientusinglog
+    <set >
+      <if test="sessionId != null" >
+        session_id = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="startMillis != null" >
+        start_millis = #{startMillis,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endMillis != null" >
+        end_millis = #{endMillis,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="activities != null" >
+        activities = #{activities,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null" >
+        appkey = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null" >
+        insertdate = #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.ClientUsingLogEntity" >
+    update ums_clientusinglog
+    set session_id = #{sessionId,jdbcType=VARCHAR},
+      start_millis = #{startMillis,jdbcType=TIMESTAMP},
+      end_millis = #{endMillis,jdbcType=TIMESTAMP},
+      duration = #{duration,jdbcType=INTEGER},
+      activities = #{activities,jdbcType=VARCHAR},
+      appkey = #{appkey,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      insertdate = #{insertdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
