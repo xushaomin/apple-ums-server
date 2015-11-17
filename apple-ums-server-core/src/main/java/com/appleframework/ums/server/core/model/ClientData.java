@@ -40,6 +40,7 @@ public class ClientData implements Serializable {
 	private String latitude;
 	
 	private Integer isJailBroken;
+	private String ip;
 
 	public String getPlatform() {
 		return platform;
@@ -250,11 +251,19 @@ public class ClientData implements Serializable {
 	}
 
 	public Integer getIsJailBroken() {
-		return isJailBroken;
+		return isJailBroken == null ? 0 : isJailBroken;
 	}
 
 	public void setIsJailBroken(Integer isJailBroken) {
 		this.isJailBroken = isJailBroken;
+	}
+
+	public String getIp() {
+		return ip == null ? "127.0.0.1" : ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	@Override
