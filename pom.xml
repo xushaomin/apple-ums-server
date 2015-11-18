@@ -350,5 +350,6 @@
 		<module>apple-ums-server-core</module>
 		<module>apple-ums-server-collector</module>
 		<module>apple-ums-server-storage</module>
+		<module>apple-ums-server-provider</module>
 	</modules>
 </project>

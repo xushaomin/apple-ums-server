@@ -14,6 +14,16 @@
 
 	<dependencies>
 	
+		<!-- apple -->
+		<dependency>
+			<groupId>com.appleframework</groupId>
+			<artifactId>apple-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework</groupId>
+			<artifactId>apple-distributed</artifactId>
+		</dependency>
+	
 		<dependency>
 			<groupId>com.appleframework.ums</groupId>
 			<artifactId>apple-ums-server-core</artifactId>
