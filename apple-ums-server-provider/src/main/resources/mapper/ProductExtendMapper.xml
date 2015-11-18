@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ums.server.provider.dao.ProductExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.ProductEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="channel_count" property="channelCount" jdbcType="INTEGER" />
+    <result column="product_key" property="productKey" jdbcType="VARCHAR" />
+    <result column="product_platform" property="productPlatform" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, description, date, user_id, channel_count, product_key, product_platform, 
+    category, active
+  </sql>
+  <select id="selectByProductKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ums_product
+    where product_key = #{productKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ums.server.provider.dao.ConfigEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.ConfigEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="autogetlocation" property="autogetlocation" jdbcType="BIT" />
+    <result column="updateonlywifi" property="updateonlywifi" jdbcType="BIT" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="sessionmillis" property="sessionmillis" jdbcType="INTEGER" />
+    <result column="reportpolicy" property="reportpolicy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, autogetlocation, updateonlywifi, product_id, sessionmillis, reportpolicy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ums_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ums_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.ConfigEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_config (autogetlocation, updateonlywifi, product_id, 
+      sessionmillis, reportpolicy)
+    values (#{autogetlocation,jdbcType=BIT}, #{updateonlywifi,jdbcType=BIT}, #{productId,jdbcType=INTEGER}, 
+      #{sessionmillis,jdbcType=INTEGER}, #{reportpolicy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.ConfigEntity" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="autogetlocation != null" >
+        autogetlocation,
+      </if>
+      <if test="updateonlywifi != null" >
+        updateonlywifi,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="sessionmillis != null" >
+        sessionmillis,
+      </if>
+      <if test="reportpolicy != null" >
+        reportpolicy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="autogetlocation != null" >
+        #{autogetlocation,jdbcType=BIT},
+      </if>
+      <if test="updateonlywifi != null" >
+        #{updateonlywifi,jdbcType=BIT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionmillis != null" >
+        #{sessionmillis,jdbcType=INTEGER},
+      </if>
+      <if test="reportpolicy != null" >
+        #{reportpolicy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.ConfigEntity" >
+    update ums_config
+    <set >
+      <if test="autogetlocation != null" >
+        autogetlocation = #{autogetlocation,jdbcType=BIT},
+      </if>
+      <if test="updateonlywifi != null" >
+        updateonlywifi = #{updateonlywifi,jdbcType=BIT},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionmillis != null" >
+        sessionmillis = #{sessionmillis,jdbcType=INTEGER},
+      </if>
+      <if test="reportpolicy != null" >
+        reportpolicy = #{reportpolicy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.ConfigEntity" >
+    update ums_config
+    set autogetlocation = #{autogetlocation,jdbcType=BIT},
+      updateonlywifi = #{updateonlywifi,jdbcType=BIT},
+      product_id = #{productId,jdbcType=INTEGER},
+      sessionmillis = #{sessionmillis,jdbcType=INTEGER},
+      reportpolicy = #{reportpolicy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
