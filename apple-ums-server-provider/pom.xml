@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.appleframework.ums</groupId>
+		<artifactId>apple-ums-server</artifactId>
+		<version>0.0.1.BETA</version>
+	</parent>
+	<artifactId>apple-ums-server-provider</artifactId>
+	<name>apple-ums-server-provider</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.appleframework.ums</groupId>
+			<artifactId>apple-ums-server-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework</groupId>
+			<artifactId>apple-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework</groupId>
+			<artifactId>apple-distributed</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.orm</groupId>
+			<artifactId>apple-orm-mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.config</groupId>
+			<artifactId>apple-config-diamond</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.appleframework.boot</groupId>
+			<artifactId>apple-boot-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+	</dependencies>
+</project>
