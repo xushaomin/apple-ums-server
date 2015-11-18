@@ -68,6 +68,7 @@ public class ClientDataVo implements Serializable {
 	
 	private String channel;
 	private Integer isjailbroken;
+	private String ip;
 
 	public String getPlatform() {
 		return platform;
@@ -283,6 +284,14 @@ public class ClientDataVo implements Serializable {
 
 	public void setIsjailbroken(Integer isjailbroken) {
 		this.isjailbroken = isjailbroken;
+	}
+	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	@Override

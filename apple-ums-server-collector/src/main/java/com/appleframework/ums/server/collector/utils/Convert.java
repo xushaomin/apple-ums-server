@@ -45,6 +45,7 @@ public class Convert {
 		clientData.setWifiMac(vo.getWifimac());
 		clientData.setChannel(vo.getChannel());
 		clientData.setIsJailBroken(vo.getIsjailbroken());
+		clientData.setIp(vo.getIp());
 		return clientData;
 	}
 

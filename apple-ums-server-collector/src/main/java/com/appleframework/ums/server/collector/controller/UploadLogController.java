@@ -39,6 +39,7 @@ public class UploadLogController extends BaseController {
 		}
 		if(null != clientDataList) {
 			for (ClientDataVo clientDataVo : clientDataList) {
+				clientDataVo.setIp(request.getRestRequestContext().getIp());
 				messageProducer.sendObject(Convert.convert(clientDataVo));
 			}
 		}
