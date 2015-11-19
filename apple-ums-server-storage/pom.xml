@@ -36,6 +36,10 @@
 			<groupId>com.appleframework.config</groupId>
 			<artifactId>apple-config-diamond</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.appleframework.util</groupId>
+			<artifactId>apple-util-ip</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.appleframework.boot</groupId>
