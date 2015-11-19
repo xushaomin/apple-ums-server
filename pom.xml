@@ -159,6 +159,13 @@
   				<version>${logs.version}</version>
 			</dependency>
 			
+			<!-- util -->
+			<dependency>
+				<groupId>com.appleframework.util</groupId>
+				<artifactId>apple-util-ip</artifactId>
+				<version>0.0.2.RELEASE</version>
+			</dependency>
+			
 			<!-- spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
