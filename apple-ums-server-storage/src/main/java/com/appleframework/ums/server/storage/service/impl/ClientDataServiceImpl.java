@@ -8,11 +8,13 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
 
+import com.appleframework.core.utils.StringUtility;
 import com.appleframework.ums.server.core.entity.ClientDataEntity;
 import com.appleframework.ums.server.core.model.ClientData;
 import com.appleframework.ums.server.storage.dao.ClientDataEntityMapper;
 import com.appleframework.ums.server.storage.service.ClientDataService;
 import com.appleframework.ums.server.storage.utils.Contants;
+import com.appleframework.util.ip.IP;
 
 @Service("clientDataService")
 public class ClientDataServiceImpl implements ClientDataService {
@@ -28,6 +30,10 @@ public class ClientDataServiceImpl implements ClientDataService {
 	public void save(ClientData clientData) {
 		ClientDataEntity record = new ClientDataEntity();
 		record.setClientip(clientData.getIp());
+		String[] regions = IP.find(clientData.getIp());
+		record.setCountry(StringUtility.isEmpty(regions[0])? "unknown" : regions[0]);
+		record.setRegion(StringUtility.isEmpty(regions[1])? "unknown" : regions[1]);
+		record.setCity(StringUtility.isEmpty(regions[2])? "unknown" : regions[2]);
 		try {
 			record.setDate(DateUtils.parseDate(clientData.getTime(), Contants.pattern));
 		} catch (ParseException e) {
@@ -64,17 +70,14 @@ public class ClientDataServiceImpl implements ClientDataService {
 		record.setUseridentifier(clientData.getUserId());
 		record.setVersion(clientData.getVersion());
 		record.setWifimac(clientData.getWifiMac());
+		record.setServiceSupplier(clientData.getMccmnc());
 		
-		record.setServiceSupplier(null);
 		record.setServiceversion(null);
 		record.setName(null);
 		record.setDefaultbrowser(null);
-		record.setCity(null);
-		record.setCountry(null);
 		record.setStreet(null);
 		record.setStreetno(null);
 		record.setPostcode(null);
-		record.setRegion(null);
 		record.setOsaddtional(null);
 		record.setJavasupport(null);
 		record.setFlashversion(null);
