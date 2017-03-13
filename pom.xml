@@ -4,7 +4,7 @@
 
 	<groupId>com.appleframework.ums</groupId>
 	<artifactId>apple-ums-server</artifactId>
-	<version>0.0.1.BETA</version>
+	<version>0.1.0.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>apple-ums-server</name>
