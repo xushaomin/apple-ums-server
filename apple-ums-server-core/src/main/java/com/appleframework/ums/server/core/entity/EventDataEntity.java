@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class EventDataEntity implements Serializable {
-	
     private Integer id;
 
     private String deviceid;
@@ -26,6 +25,12 @@ public class EventDataEntity implements Serializable {
     private Integer eventId;
 
     private String version;
+
+    private String useridentifier;
+
+    private String sessionId;
+
+    private String libVersion;
 
     private Date insertdate;
 
@@ -117,6 +122,30 @@ public class EventDataEntity implements Serializable {
 
     public void setVersion(String version) {
         this.version = version == null ? null : version.trim();
+    }
+
+    public String getUseridentifier() {
+        return useridentifier;
+    }
+
+    public void setUseridentifier(String useridentifier) {
+        this.useridentifier = useridentifier == null ? null : useridentifier.trim();
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId == null ? null : sessionId.trim();
+    }
+
+    public String getLibVersion() {
+        return libVersion;
+    }
+
+    public void setLibVersion(String libVersion) {
+        this.libVersion = libVersion == null ? null : libVersion.trim();
     }
 
     public Date getInsertdate() {

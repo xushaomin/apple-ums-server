@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ClientDataEntity implements Serializable {
-	
     private Integer id;
 
     private String serviceversion;
@@ -84,6 +83,10 @@ public class ClientDataEntity implements Serializable {
     private Date insertdate;
 
     private String useridentifier;
+
+    private String sessionId;
+
+    private String libVersion;
 
     private static final long serialVersionUID = 1L;
 
@@ -405,5 +408,21 @@ public class ClientDataEntity implements Serializable {
 
     public void setUseridentifier(String useridentifier) {
         this.useridentifier = useridentifier == null ? null : useridentifier.trim();
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId == null ? null : sessionId.trim();
+    }
+
+    public String getLibVersion() {
+        return libVersion;
+    }
+
+    public void setLibVersion(String libVersion) {
+        this.libVersion = libVersion == null ? null : libVersion.trim();
     }
 }

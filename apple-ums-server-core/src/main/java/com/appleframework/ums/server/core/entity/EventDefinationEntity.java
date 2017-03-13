@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class EventDefinationEntity implements Serializable {
-	
     private Integer eventId;
 
     private String eventIdentifier;

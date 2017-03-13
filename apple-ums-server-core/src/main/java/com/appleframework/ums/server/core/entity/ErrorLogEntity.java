@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ErrorLogEntity implements Serializable {
-	
     private Integer id;
 
     private String appkey;
@@ -20,6 +19,22 @@ public class ErrorLogEntity implements Serializable {
     private String version;
 
     private Integer isfix;
+
+    private Integer errorType;
+
+    private String sessionId;
+
+    private String useridentifier;
+
+    private String libVersion;
+
+    private String deviceid;
+
+    private String dsymid;
+
+    private String cpt;
+
+    private String bim;
 
     private Date insertdate;
 
@@ -87,6 +102,70 @@ public class ErrorLogEntity implements Serializable {
 
     public void setIsfix(Integer isfix) {
         this.isfix = isfix;
+    }
+
+    public Integer getErrorType() {
+        return errorType;
+    }
+
+    public void setErrorType(Integer errorType) {
+        this.errorType = errorType;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId == null ? null : sessionId.trim();
+    }
+
+    public String getUseridentifier() {
+        return useridentifier;
+    }
+
+    public void setUseridentifier(String useridentifier) {
+        this.useridentifier = useridentifier == null ? null : useridentifier.trim();
+    }
+
+    public String getLibVersion() {
+        return libVersion;
+    }
+
+    public void setLibVersion(String libVersion) {
+        this.libVersion = libVersion == null ? null : libVersion.trim();
+    }
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid == null ? null : deviceid.trim();
+    }
+
+    public String getDsymid() {
+        return dsymid;
+    }
+
+    public void setDsymid(String dsymid) {
+        this.dsymid = dsymid == null ? null : dsymid.trim();
+    }
+
+    public String getCpt() {
+        return cpt;
+    }
+
+    public void setCpt(String cpt) {
+        this.cpt = cpt == null ? null : cpt.trim();
+    }
+
+    public String getBim() {
+        return bim;
+    }
+
+    public void setBim(String bim) {
+        this.bim = bim == null ? null : bim.trim();
     }
 
     public Date getInsertdate() {

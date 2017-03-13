@@ -1,4 +1,4 @@
-package com.appleframework.ums.server.core.model;
+package com.appleframework.ums.server.storage.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

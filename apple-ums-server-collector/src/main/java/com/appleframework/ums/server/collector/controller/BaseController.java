@@ -2,7 +2,7 @@ package com.appleframework.ums.server.collector.controller;
 
 import javax.annotation.Resource;
 
-import com.appleframework.jms.core.producer.MessageProducer;
+import com.appleframework.jms.core.producer.MessageProducer3;
 import com.appleframework.rest.annotation.ServiceMethodBean;
 
 /**
@@ -16,7 +16,10 @@ import com.appleframework.rest.annotation.ServiceMethodBean;
 @ServiceMethodBean
 public class BaseController {
 
+	/*@Resource
+	protected MessageProducer2 messageProducer2;*/
+	
 	@Resource
-	protected MessageProducer messageProducer;
+	protected MessageProducer3 messageProducer3;
 	
 }

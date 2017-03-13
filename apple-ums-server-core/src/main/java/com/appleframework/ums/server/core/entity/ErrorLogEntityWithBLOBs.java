@@ -3,7 +3,6 @@ package com.appleframework.ums.server.core.entity;
 import java.io.Serializable;
 
 public class ErrorLogEntityWithBLOBs extends ErrorLogEntity implements Serializable {
-	
     private String title;
 
     private String stacktrace;
