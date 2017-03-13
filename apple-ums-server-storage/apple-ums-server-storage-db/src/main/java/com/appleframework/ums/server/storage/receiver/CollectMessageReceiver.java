@@ -17,6 +17,8 @@ import com.appleframework.ums.server.core.model.EventLogJson;
 import com.appleframework.ums.server.core.model.UsingLog;
 import com.appleframework.ums.server.core.model.UsingLogJson;
 import com.appleframework.ums.server.storage.service.ClientDataService;
+import com.appleframework.ums.server.storage.service.ClientUsingLogService;
+import com.appleframework.ums.server.storage.service.ErrorLogService;
 import com.appleframework.ums.server.storage.service.EventLogService;
 
 import kafka.message.MessageAndMetadata;
@@ -28,72 +30,56 @@ import kafka.message.MessageAndMetadata;
  */
 public class CollectMessageReceiver extends MessageAndMetadataConsumer {
 
-    private static final Logger logger = Logger.getLogger(CollectMessageReceiver.class);
-    
-    /*@Resource
-    private ClientDataService clientDataService;
-    
-    @Resource
-    private EventDataService eventDataService;
-    
-    @Resource
-    private ClientUsingLogService clientUsingLogService;
-    
-    @Resource
-    private ErrorLogService errorLogService;*/
-    
-    @Resource
-    private EventLogService eventLogService;
-    
-    @Resource
-    private ClientDataService clientDataService;
-    
-    @Override
+	private static final Logger logger = Logger.getLogger(CollectMessageReceiver.class);
+
+	@Resource
+	private ClientUsingLogService clientUsingLogService;
+
+	@Resource
+	private ErrorLogService errorLogService;
+
+	@Resource
+	private EventLogService eventLogService;
+
+	@Resource
+	private ClientDataService clientDataService;
+
+	@Override
 	public void processMessage(MessageAndMetadata<byte[], byte[]> message) {
-    	try {
-    		String topic = message.topic();
-    		logger.info("topic=" + topic);
-    		String content = new String(message.message());
-    		String ip = new String(message.key());
-    		
-    		if(topic.equals("topic_eventlog")) {
+		try {
+			String topic = message.topic();
+			String content = new String(message.message());
+			String ip = new String(message.key());
+
+			if (topic.equals("topic_eventlog")) {
 				EventLogJson json = JSON.parseObject(content, EventLogJson.class);
 				List<EventLog> data = json.getData();
 				for (EventLog log : data) {
-					System.out.println(log.toString());
 					eventLogService.save(log);
 				}
-				
-			} else if(topic.equals("topic_errorlog")) {
-				
+			} else if (topic.equals("topic_errorlog")) {
 				ErrorLogJson json = JSON.parseObject(content, ErrorLogJson.class);
 				List<ErrorLog> data = json.getData();
 				for (ErrorLog log : data) {
-					System.out.println(log.toString());
+					errorLogService.save(log);
 				}
-				
-			} else if(topic.equals("topic_clientdata")) {
-				
+			} else if (topic.equals("topic_clientdata")) {
 				ClientDataJson json = JSON.parseObject(content, ClientDataJson.class);
 				List<ClientData> data = json.getData();
 				for (ClientData log : data) {
 					clientDataService.save(log, ip);
 				}
-				
-			} else if(topic.equals("topic_usinglog")) {
-				
+			} else if (topic.equals("topic_usinglog")) {
 				UsingLogJson json = JSON.parseObject(content, UsingLogJson.class);
 				List<UsingLog> data = json.getData();
 				for (UsingLog log : data) {
-					System.out.println(log.toString());					
+					clientUsingLogService.save(log);
 				}
-				
 			}
-        	
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.error(e);
 		}
-    	
+
 	}
 
 }

@@ -1,4 +1,4 @@
-/*package com.appleframework.ums.server.storage.service.impl;
+package com.appleframework.ums.server.storage.service.impl;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -9,8 +9,8 @@ import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import com.appleframework.ums.server.core.entity.ErrorLogEntityWithBLOBs;
-import com.appleframework.ums.server.core.model.ErrorInfo;
-import com.appleframework.ums.server.storage.mapper.ErrorLogEntityMapper;
+import com.appleframework.ums.server.core.model.ErrorLog;
+import com.appleframework.ums.server.storage.dao.ErrorLogEntityDao;
 import com.appleframework.ums.server.storage.service.ErrorLogService;
 import com.appleframework.ums.server.storage.utils.Contants;
 
@@ -18,31 +18,32 @@ import com.appleframework.ums.server.storage.utils.Contants;
 public class ErrorLogServiceImpl implements ErrorLogService {
 		
 	@Resource
-	private ErrorLogEntityMapper errorLogEntityMapper;
+	private ErrorLogEntityDao errorLogEntityDao;
 	
-	private void save(ErrorLogEntityWithBLOBs record) {
-		record.setInsertdate(new Date());
-		errorLogEntityMapper.insert(record);
-	}
-	
-	public void save(ErrorInfo errorInfo) {
+	public void save(ErrorLog errorLog) {
 		try {
-			ErrorLogEntityWithBLOBs record = new ErrorLogEntityWithBLOBs();
-			record.setActivity(errorInfo.getActivity());
-			record.setAppkey(errorInfo.getAppKey());
-			record.setDevice(errorInfo.getDeviceId());
 			
-			record.setOsVersion(errorInfo.getOsVersion());
+			ErrorLogEntityWithBLOBs record = new ErrorLogEntityWithBLOBs();
+			record.setErrorType(Integer.parseInt(errorLog.getError_type()));
+			record.setSessionId(errorLog.getSession_id());
+			record.setUseridentifier(errorLog.getUseridentifier());
+			record.setActivity(errorLog.getActivity());
+			record.setAppkey(errorLog.getAppkey());
+			record.setDeviceid(errorLog.getDeviceid());
+			record.setDevice(errorLog.getDevicename());
+			record.setLibVersion(errorLog.getLib_version());
+			
+			record.setOsVersion(errorLog.getOs_version());
 			
 			try {
-				record.setTime(DateUtils.parseDate(errorInfo.getTime(), Contants.pattern));
+				record.setTime(DateUtils.parseDate(errorLog.getTime(), Contants.pattern));
 			} catch (ParseException e) {
 				record.setTime(new Date());
 			}
-			record.setVersion(errorInfo.getVersion());
+			record.setVersion(errorLog.getVersion());
 			
 			record.setIsfix(0);
-			String stackTrace = errorInfo.getStackTrace();
+			String stackTrace = errorLog.getStacktrace();
 			record.setStacktrace(stackTrace);
 			String[] stackTraces = stackTrace.split("\n");
 			if(stackTraces.length > 0) {
@@ -51,7 +52,7 @@ public class ErrorLogServiceImpl implements ErrorLogService {
 			else {
 				record.setTitle(stackTrace);
 			}
-			this.save(record);
+			errorLogEntityDao.save(record);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,4 +60,3 @@ public class ErrorLogServiceImpl implements ErrorLogService {
 	}
 
 }
-*/
