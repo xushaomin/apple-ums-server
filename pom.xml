@@ -421,13 +421,13 @@
 		<repository>
 			<id>nexus-releases</id>
 			<name>Local Nexus Releases Repository</name>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/repositories/releases</url>
+			<url>http://nexus.appleframework.com:8787/nexus/content/repositories/releases</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>Local Nexus Snapshots Repository</name>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/repositories/snapshots</url>
+			<url>http://nexus.appleframework.com:8787/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
