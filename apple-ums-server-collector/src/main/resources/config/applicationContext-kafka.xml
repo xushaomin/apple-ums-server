@@ -12,6 +12,9 @@
         		<prop key="serializer.class">kafka.serializer.DefaultEncoder</prop>
         		<prop key="metadata.broker.list">${metadata.broker.list}</prop>
         		<prop key="producer.type">async</prop>
+    			<prop key="request.required.acks">1</prop>
+        		<prop key="partitioner.class">com.appleframework.jms.kafka.partitions.RandomPartitioner</prop>
+                <prop key="key.serializer.class">kafka.serializer.StringEncoder</prop>
             </props>
         </property>
     </bean>
@@ -24,9 +27,12 @@
 		<constructor-arg index="0" ref="producerConfig" />
 	</bean>
 
-	<bean id="messageProducer" class="com.appleframework.jms.kafka.producer.KafkaMessageProducer">
+	<bean id="messageProducer2" class="com.appleframework.jms.kafka.producer.KafkaMessageProducer2">
 		<property name="producer" ref="producer" />
-		<property name="topic" value="${metadata.topic:ums_collect}" />
+	</bean>
+	
+	<bean id="messageProducer3" class="com.appleframework.jms.kafka.producer.KafkaMessageProducer3">
+		<property name="producer" ref="producer" />
 	</bean>
 	
 </beans>

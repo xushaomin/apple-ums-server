@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.appleframework.ums.server.storage.dao.ClientDataEntityMapper" >
+<mapper namespace="com.appleframework.ums.server.storage.mapper.ClientDataEntityMapper" >
   <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.ClientDataEntity" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="serviceversion" property="serviceversion" jdbcType="VARCHAR" />
@@ -42,29 +42,32 @@
     <result column="isjailbroken" property="isjailbroken" jdbcType="INTEGER" />
     <result column="insertdate" property="insertdate" jdbcType="TIMESTAMP" />
     <result column="useridentifier" property="useridentifier" jdbcType="VARCHAR" />
+    <result column="session_id" property="sessionId" jdbcType="VARCHAR" />
+    <result column="lib_version" property="libVersion" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, serviceversion, name, version, platform, osversion, osaddtional, language, resolution, 
     ismobiledevice, devicename, deviceid, defaultbrowser, javasupport, flashversion, 
     modulename, imei, imsi, salt, havegps, havebt, havewifi, havegravity, wifimac, latitude, 
     longitude, date, clientip, productkey, service_supplier, country, region, city, street, 
-    streetno, postcode, network, isjailbroken, insertdate, useridentifier
+    streetno, postcode, network, isjailbroken, insertdate, useridentifier, session_id, 
+    lib_version
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from ums_clientdata
+    from bw_clientdata
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from ums_clientdata
+    delete from bw_clientdata
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_clientdata (serviceversion, name, version, 
+    insert into bw_clientdata (serviceversion, name, version, 
       platform, osversion, osaddtional, 
       language, resolution, ismobiledevice, 
       devicename, deviceid, defaultbrowser, 
@@ -76,7 +79,8 @@
       service_supplier, country, region, 
       city, street, streetno, 
       postcode, network, isjailbroken, 
-      insertdate, useridentifier)
+      insertdate, useridentifier, session_id, 
+      lib_version)
     values (#{serviceversion,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
       #{platform,jdbcType=VARCHAR}, #{osversion,jdbcType=VARCHAR}, #{osaddtional,jdbcType=VARCHAR}, 
       #{language,jdbcType=VARCHAR}, #{resolution,jdbcType=VARCHAR}, #{ismobiledevice,jdbcType=VARCHAR}, 
@@ -89,13 +93,14 @@
       #{serviceSupplier,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, 
       #{city,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, #{streetno,jdbcType=VARCHAR}, 
       #{postcode,jdbcType=VARCHAR}, #{network,jdbcType=VARCHAR}, #{isjailbroken,jdbcType=INTEGER}, 
-      #{insertdate,jdbcType=TIMESTAMP}, #{useridentifier,jdbcType=VARCHAR})
+      #{insertdate,jdbcType=TIMESTAMP}, #{useridentifier,jdbcType=VARCHAR}, #{sessionId,jdbcType=VARCHAR}, 
+      #{libVersion,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_clientdata
+    insert into bw_clientdata
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="serviceversion != null" >
         serviceversion,
@@ -213,6 +218,12 @@
       </if>
       <if test="useridentifier != null" >
         useridentifier,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="libVersion != null" >
+        lib_version,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -333,10 +344,16 @@
       <if test="useridentifier != null" >
         #{useridentifier,jdbcType=VARCHAR},
       </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="libVersion != null" >
+        #{libVersion,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
-    update ums_clientdata
+    update bw_clientdata
     <set >
       <if test="serviceversion != null" >
         serviceversion = #{serviceversion,jdbcType=VARCHAR},
@@ -455,11 +472,17 @@
       <if test="useridentifier != null" >
         useridentifier = #{useridentifier,jdbcType=VARCHAR},
       </if>
+      <if test="sessionId != null" >
+        session_id = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="libVersion != null" >
+        lib_version = #{libVersion,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.ClientDataEntity" >
-    update ums_clientdata
+    update bw_clientdata
     set serviceversion = #{serviceversion,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       version = #{version,jdbcType=VARCHAR},
@@ -498,7 +521,9 @@
       network = #{network,jdbcType=VARCHAR},
       isjailbroken = #{isjailbroken,jdbcType=INTEGER},
       insertdate = #{insertdate,jdbcType=TIMESTAMP},
-      useridentifier = #{useridentifier,jdbcType=VARCHAR}
+      useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      session_id = #{sessionId,jdbcType=VARCHAR},
+      lib_version = #{libVersion,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

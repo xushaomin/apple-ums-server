@@ -47,7 +47,7 @@
 		
 		<dependency>
 			<groupId>com.appleframework.boot</groupId>
-			<artifactId>apple-boot-jetty</artifactId>
+			<artifactId>apple-boot-jetty8</artifactId>
 		</dependency>
 		
 		<!-- bean工具类 -->

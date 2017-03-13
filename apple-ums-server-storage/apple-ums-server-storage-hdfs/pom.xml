@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.appleframework.ums</groupId>
+		<artifactId>apple-ums-server-storage</artifactId>
+		<version>0.0.1.BETA</version>
+	</parent>
+	<artifactId>apple-ums-server-storage-hdfs</artifactId>
+	<name>apple-ums-server-storage-hdfs</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<scala.version>2.11.8</scala.version>
+		<scala.compat.version>2.11</scala.compat.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.appleframework.flume</groupId>
+			<artifactId>apple-flume-ng-node</artifactId>
+			<version>0.0.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.flume</groupId>
+			<artifactId>apple-flume-hdfs-sink</artifactId>
+			<version>0.0.7.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpcore</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+
+		<dependency>
+			<groupId>com.appleframework.config</groupId>
+			<artifactId>apple-config-diamond</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.boot</groupId>
+			<artifactId>apple-boot-java</artifactId>
+			<version>${boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.appleframework.boot</groupId>
+			<artifactId>apple-boot-config</artifactId>
+			<version>${boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flume.flume-ng-sources</groupId>
+			<artifactId>flume-kafka-source</artifactId>
+			<version>1.6.0</version>
+		</dependency>		
+		
+		<!-- hadoop common -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-yarn-api</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>2.6.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>curator-client</artifactId>
+					<groupId>org.apache.curator</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>httpcore</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>httpclient</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>2.6.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hadoop-yarn-api</artifactId>
+					<groupId>org.apache.hadoop</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.24</version>
+		</dependency>
+
+	</dependencies>
+</project>

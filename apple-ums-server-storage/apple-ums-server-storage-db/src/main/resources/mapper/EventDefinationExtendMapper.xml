@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appleframework.ums.server.storage.mapper.EventDefinationExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.EventDefinationEntity">
+    <id column="event_id" jdbcType="INTEGER" property="eventId" />
+    <result column="event_identifier" jdbcType="VARCHAR" property="eventIdentifier" />
+    <result column="productkey" jdbcType="CHAR" property="productkey" />
+    <result column="event_name" jdbcType="CHAR" property="eventName" />
+    <result column="channel_id" jdbcType="INTEGER" property="channelId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="active" jdbcType="INTEGER" property="active" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    event_id, event_identifier, productkey, event_name, channel_id, product_id, user_id, 
+    create_date, active
+  </sql>
+  <select id="selectByProductkeyAndEventIdentifier" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from bw_event_defination
+    where productkey = '${productkey}'
+    and event_identifier = '${eventIdentifier}'
+  </select>
+</mapper>

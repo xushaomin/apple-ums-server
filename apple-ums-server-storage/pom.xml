@@ -1,7 +1,5 @@
-<?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.appleframework.ums</groupId>
@@ -11,59 +9,12 @@
 	<artifactId>apple-ums-server-storage</artifactId>
 	<name>apple-ums-server-storage</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>com.appleframework.ums</groupId>
-			<artifactId>apple-ums-server-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.appleframework</groupId>
-			<artifactId>apple-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.appleframework.jms</groupId>
-			<artifactId>apple-jms-kafka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.appleframework.orm</groupId>
-			<artifactId>apple-orm-mybatis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.appleframework.config</groupId>
-			<artifactId>apple-config-diamond</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.appleframework.util</groupId>
-			<artifactId>apple-util-ip</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.appleframework.boot</groupId>
-			<artifactId>apple-boot-spring</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-		</dependency>
-			
-	</dependencies>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>apple-ums-server-storage-hdfs</module>
+    	<module>apple-ums-server-storage-hive</module>
+    	<module>apple-ums-server-storage-db</module>
+	</modules>
+	
 </project>

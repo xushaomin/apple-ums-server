@@ -6,6 +6,7 @@
     	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
    
+   <!-- 
   	<dubbo:application name="${application.name}" owner="${application.owner}" />  	
  	<dubbo:registry protocol="zookeeper" address="${registry.address}" />	
   
@@ -16,5 +17,6 @@
 	<dubbo:reference id="configService"
 		interface="com.appleframework.ums.server.core.service.ConfigService"
 		version="1.0" check="false" />	
-	
+	 -->
+	 
 </beans>

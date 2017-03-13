@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.appleframework.ums.server.storage.dao.ErrorLogEntityMapper" >
+<mapper namespace="com.appleframework.ums.server.storage.mapper.ErrorLogEntityMapper" >
   <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.ErrorLogEntity" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="appkey" property="appkey" jdbcType="VARCHAR" />
@@ -10,6 +10,14 @@
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="version" property="version" jdbcType="VARCHAR" />
     <result column="isfix" property="isfix" jdbcType="INTEGER" />
+    <result column="error_type" property="errorType" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="VARCHAR" />
+    <result column="useridentifier" property="useridentifier" jdbcType="VARCHAR" />
+    <result column="lib_version" property="libVersion" jdbcType="VARCHAR" />
+    <result column="deviceid" property="deviceid" jdbcType="VARCHAR" />
+    <result column="dsymid" property="dsymid" jdbcType="VARCHAR" />
+    <result column="cpt" property="cpt" jdbcType="VARCHAR" />
+    <result column="bim" property="bim" jdbcType="VARCHAR" />
     <result column="insertdate" property="insertdate" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.appleframework.ums.server.core.entity.ErrorLogEntityWithBLOBs" extends="BaseResultMap" >
@@ -17,7 +25,8 @@
     <result column="stacktrace" property="stacktrace" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, appkey, device, os_version, activity, time, version, isfix, insertdate
+    id, appkey, device, os_version, activity, time, version, isfix, error_type, session_id, 
+    useridentifier, lib_version, deviceid, dsymid, cpt, bim, insertdate
   </sql>
   <sql id="Blob_Column_List" >
     title, stacktrace
@@ -27,31 +36,35 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from ums_errorlog
+    from bw_errorlog
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from ums_errorlog
+    delete from bw_errorlog
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.ErrorLogEntityWithBLOBs" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_errorlog (appkey, device, os_version, 
+    insert into bw_errorlog (appkey, device, os_version, 
       activity, time, version, 
-      isfix, insertdate, title, 
-      stacktrace)
+      isfix, error_type, session_id, 
+      useridentifier, lib_version, deviceid, 
+      dsymid, cpt, bim, insertdate, 
+      title, stacktrace)
     values (#{appkey,jdbcType=VARCHAR}, #{device,jdbcType=VARCHAR}, #{osVersion,jdbcType=VARCHAR}, 
       #{activity,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{version,jdbcType=VARCHAR}, 
-      #{isfix,jdbcType=INTEGER}, #{insertdate,jdbcType=TIMESTAMP}, #{title,jdbcType=LONGVARCHAR}, 
-      #{stacktrace,jdbcType=LONGVARCHAR})
+      #{isfix,jdbcType=INTEGER}, #{errorType,jdbcType=INTEGER}, #{sessionId,jdbcType=VARCHAR}, 
+      #{useridentifier,jdbcType=VARCHAR}, #{libVersion,jdbcType=VARCHAR}, #{deviceid,jdbcType=VARCHAR}, 
+      #{dsymid,jdbcType=VARCHAR}, #{cpt,jdbcType=VARCHAR}, #{bim,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=LONGVARCHAR}, #{stacktrace,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.ErrorLogEntityWithBLOBs" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_errorlog
+    insert into bw_errorlog
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="appkey != null" >
         appkey,
@@ -73,6 +86,30 @@
       </if>
       <if test="isfix != null" >
         isfix,
+      </if>
+      <if test="errorType != null" >
+        error_type,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="useridentifier != null" >
+        useridentifier,
+      </if>
+      <if test="libVersion != null" >
+        lib_version,
+      </if>
+      <if test="deviceid != null" >
+        deviceid,
+      </if>
+      <if test="dsymid != null" >
+        dsymid,
+      </if>
+      <if test="cpt != null" >
+        cpt,
+      </if>
+      <if test="bim != null" >
+        bim,
       </if>
       <if test="insertdate != null" >
         insertdate,
@@ -106,6 +143,30 @@
       <if test="isfix != null" >
         #{isfix,jdbcType=INTEGER},
       </if>
+      <if test="errorType != null" >
+        #{errorType,jdbcType=INTEGER},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="useridentifier != null" >
+        #{useridentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="libVersion != null" >
+        #{libVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="dsymid != null" >
+        #{dsymid,jdbcType=VARCHAR},
+      </if>
+      <if test="cpt != null" >
+        #{cpt,jdbcType=VARCHAR},
+      </if>
+      <if test="bim != null" >
+        #{bim,jdbcType=VARCHAR},
+      </if>
       <if test="insertdate != null" >
         #{insertdate,jdbcType=TIMESTAMP},
       </if>
@@ -118,7 +179,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.ErrorLogEntityWithBLOBs" >
-    update ums_errorlog
+    update bw_errorlog
     <set >
       <if test="appkey != null" >
         appkey = #{appkey,jdbcType=VARCHAR},
@@ -141,6 +202,30 @@
       <if test="isfix != null" >
         isfix = #{isfix,jdbcType=INTEGER},
       </if>
+      <if test="errorType != null" >
+        error_type = #{errorType,jdbcType=INTEGER},
+      </if>
+      <if test="sessionId != null" >
+        session_id = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="useridentifier != null" >
+        useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="libVersion != null" >
+        lib_version = #{libVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        deviceid = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="dsymid != null" >
+        dsymid = #{dsymid,jdbcType=VARCHAR},
+      </if>
+      <if test="cpt != null" >
+        cpt = #{cpt,jdbcType=VARCHAR},
+      </if>
+      <if test="bim != null" >
+        bim = #{bim,jdbcType=VARCHAR},
+      </if>
       <if test="insertdate != null" >
         insertdate = #{insertdate,jdbcType=TIMESTAMP},
       </if>
@@ -154,7 +239,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.appleframework.ums.server.core.entity.ErrorLogEntityWithBLOBs" >
-    update ums_errorlog
+    update bw_errorlog
     set appkey = #{appkey,jdbcType=VARCHAR},
       device = #{device,jdbcType=VARCHAR},
       os_version = #{osVersion,jdbcType=VARCHAR},
@@ -162,13 +247,21 @@
       time = #{time,jdbcType=TIMESTAMP},
       version = #{version,jdbcType=VARCHAR},
       isfix = #{isfix,jdbcType=INTEGER},
+      error_type = #{errorType,jdbcType=INTEGER},
+      session_id = #{sessionId,jdbcType=VARCHAR},
+      useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      lib_version = #{libVersion,jdbcType=VARCHAR},
+      deviceid = #{deviceid,jdbcType=VARCHAR},
+      dsymid = #{dsymid,jdbcType=VARCHAR},
+      cpt = #{cpt,jdbcType=VARCHAR},
+      bim = #{bim,jdbcType=VARCHAR},
       insertdate = #{insertdate,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=LONGVARCHAR},
       stacktrace = #{stacktrace,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.ErrorLogEntity" >
-    update ums_errorlog
+    update bw_errorlog
     set appkey = #{appkey,jdbcType=VARCHAR},
       device = #{device,jdbcType=VARCHAR},
       os_version = #{osVersion,jdbcType=VARCHAR},
@@ -176,6 +269,14 @@
       time = #{time,jdbcType=TIMESTAMP},
       version = #{version,jdbcType=VARCHAR},
       isfix = #{isfix,jdbcType=INTEGER},
+      error_type = #{errorType,jdbcType=INTEGER},
+      session_id = #{sessionId,jdbcType=VARCHAR},
+      useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      lib_version = #{libVersion,jdbcType=VARCHAR},
+      deviceid = #{deviceid,jdbcType=VARCHAR},
+      dsymid = #{dsymid,jdbcType=VARCHAR},
+      cpt = #{cpt,jdbcType=VARCHAR},
+      bim = #{bim,jdbcType=VARCHAR},
       insertdate = #{insertdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

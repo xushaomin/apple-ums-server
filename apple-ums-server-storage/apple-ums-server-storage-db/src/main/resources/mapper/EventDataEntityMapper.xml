@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.appleframework.ums.server.storage.dao.EventDataEntityMapper" >
+<mapper namespace="com.appleframework.ums.server.storage.mapper.EventDataEntityMapper" >
   <resultMap id="BaseResultMap" type="com.appleframework.ums.server.core.entity.EventDataEntity" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="deviceid" property="deviceid" jdbcType="VARCHAR" />
@@ -13,40 +13,45 @@
     <result column="num" property="num" jdbcType="INTEGER" />
     <result column="event_id" property="eventId" jdbcType="INTEGER" />
     <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="useridentifier" property="useridentifier" jdbcType="VARCHAR" />
+    <result column="session_id" property="sessionId" jdbcType="VARCHAR" />
+    <result column="lib_version" property="libVersion" jdbcType="VARCHAR" />
     <result column="insertdate" property="insertdate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, deviceid, category, event, label, attachment, clientdate, productkey, num, event_id, 
-    version, insertdate
+    version, useridentifier, session_id, lib_version, insertdate
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from ums_eventdata
+    from bw_eventdata
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from ums_eventdata
+    delete from bw_eventdata
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_eventdata (deviceid, category, event, 
+    insert into bw_eventdata (deviceid, category, event, 
       label, attachment, clientdate, 
       productkey, num, event_id, 
-      version, insertdate)
+      version, useridentifier, session_id, 
+      lib_version, insertdate)
     values (#{deviceid,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{event,jdbcType=VARCHAR}, 
       #{label,jdbcType=VARCHAR}, #{attachment,jdbcType=VARCHAR}, #{clientdate,jdbcType=TIMESTAMP}, 
       #{productkey,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{eventId,jdbcType=INTEGER}, 
-      #{version,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP})
+      #{version,jdbcType=VARCHAR}, #{useridentifier,jdbcType=VARCHAR}, #{sessionId,jdbcType=VARCHAR}, 
+      #{libVersion,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_eventdata
+    insert into bw_eventdata
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="deviceid != null" >
         deviceid,
@@ -77,6 +82,15 @@
       </if>
       <if test="version != null" >
         version,
+      </if>
+      <if test="useridentifier != null" >
+        useridentifier,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="libVersion != null" >
+        lib_version,
       </if>
       <if test="insertdate != null" >
         insertdate,
@@ -113,13 +127,22 @@
       <if test="version != null" >
         #{version,jdbcType=VARCHAR},
       </if>
+      <if test="useridentifier != null" >
+        #{useridentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="libVersion != null" >
+        #{libVersion,jdbcType=VARCHAR},
+      </if>
       <if test="insertdate != null" >
         #{insertdate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
-    update ums_eventdata
+    update bw_eventdata
     <set >
       <if test="deviceid != null" >
         deviceid = #{deviceid,jdbcType=VARCHAR},
@@ -151,6 +174,15 @@
       <if test="version != null" >
         version = #{version,jdbcType=VARCHAR},
       </if>
+      <if test="useridentifier != null" >
+        useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        session_id = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="libVersion != null" >
+        lib_version = #{libVersion,jdbcType=VARCHAR},
+      </if>
       <if test="insertdate != null" >
         insertdate = #{insertdate,jdbcType=TIMESTAMP},
       </if>
@@ -158,7 +190,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.appleframework.ums.server.core.entity.EventDataEntity" >
-    update ums_eventdata
+    update bw_eventdata
     set deviceid = #{deviceid,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
       event = #{event,jdbcType=VARCHAR},
@@ -169,6 +201,9 @@
       num = #{num,jdbcType=INTEGER},
       event_id = #{eventId,jdbcType=INTEGER},
       version = #{version,jdbcType=VARCHAR},
+      useridentifier = #{useridentifier,jdbcType=VARCHAR},
+      session_id = #{sessionId,jdbcType=VARCHAR},
+      lib_version = #{libVersion,jdbcType=VARCHAR},
       insertdate = #{insertdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

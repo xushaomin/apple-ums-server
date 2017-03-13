@@ -55,7 +55,7 @@
 	
 	<!-- 扫描basePackage下所有以@Repository标识的 接口-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.appleframework.ums.server.storage.dao" />
+		<property name="basePackage" value="com.appleframework.ums.server.storage.mapper" />
 		<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
 	</bean>
 
