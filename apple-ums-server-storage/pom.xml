@@ -12,9 +12,9 @@
 	<packaging>pom</packaging>
 	
 	<modules>
+		<module>apple-ums-server-storage-db</module>
 		<module>apple-ums-server-storage-hdfs</module>
     	<module>apple-ums-server-storage-hive</module>
-    	<module>apple-ums-server-storage-db</module>
 	</modules>
 	
 </project>
