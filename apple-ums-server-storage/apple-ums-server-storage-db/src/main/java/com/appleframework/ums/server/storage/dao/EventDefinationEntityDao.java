@@ -1,5 +1,7 @@
 package com.appleframework.ums.server.storage.dao;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,7 @@ public class EventDefinationEntityDao {
 	}
 	
 	public void save(EventDefinationEntity record) {
+		record.setCreateDate(new Date());
 		eventDefinationEntityMapper.insert(record);
 	}
 }

@@ -3,11 +3,12 @@ package com.appleframework.ums.server.core.entity;
 import java.io.Serializable;
 
 public class ErrorLogEntityWithBLOBs extends ErrorLogEntity implements Serializable {
+	
+    private static final long serialVersionUID = 1L;
+	
     private String title;
 
     private String stacktrace;
-
-    private static final long serialVersionUID = 1L;
 
     public String getTitle() {
         return title;
