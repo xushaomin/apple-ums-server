@@ -31,6 +31,8 @@
 	
 	<bean id="springUtility" class="com.appleframework.core.utils.SpringUtility" lazy-init="false" />
 	
-	<bean id="ip" class="com.appleframework.util.ip.IP" init-method="init" />
+	<bean id="ip" class="com.appleframework.util.ip.IP" init-method="init">
+		<property name="datFilePath" value="/work/data/ip/ipdata.dat" />
+	</bean>
 	
 </beans>
