@@ -5,9 +5,11 @@
 hs_err_pid*
 /target/
 */target/
+*/*/target/
 .settings
 .project
 */.settings
 */.project
 *.classpath
 *.log
+*/src/main/resources/*.properties
