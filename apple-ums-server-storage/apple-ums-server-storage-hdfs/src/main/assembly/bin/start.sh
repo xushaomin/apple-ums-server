@@ -72,7 +72,7 @@ JAVA_MEM_OPTS=" -server -Xmx2g -Xms1g -Xmn256m -XX:PermSize=128m -Xss256k -XX:+D
 
 
 echo -e "Starting the $SERVER_NAME ...\c"
-nohup java $JAVA_OPTS $JAVA_MEM_OPTS $JAVA_DEBUG_OPTS $JAVA_JMX_OPTS -classpath $CONF_DIR:$LIB_JARS com.appleframework.flume.node.Application env=$ENV --conf-file event.conf --name event > $STDOUT_FILE 2>&1 &
+nohup java $JAVA_OPTS $JAVA_MEM_OPTS $JAVA_DEBUG_OPTS $JAVA_JMX_OPTS -classpath $CONF_DIR:$LIB_JARS com.appleframework.flume.node.Application env=$ENV --conf-file conf/event.conf --name event > $STDOUT_FILE 2>&1 &
 
 COUNT=0
 while [ $COUNT -lt 1 ]; do    

@@ -334,7 +334,7 @@ public class ClientData implements Serializable {
 		buffer.append(sdf.format(new Date()));// insertdate
 		buffer.append(useridentifier).append(",");
 		buffer.append(session_id).append(",");
-		buffer.append(lib_version).append(",");
+		buffer.append(lib_version);
 		return buffer.toString();
 	}
 }
