@@ -14,7 +14,7 @@ import com.appleframework.rest.response.SuccessResponse;
  * @version 1.0
  */
 @ServiceMethodBean
-public class UsinglogController extends BaseController {
+public class UsingLogController extends BaseController {
 
 	//private static Logger logger = Logger.getLogger(UsinglogController.class);
 

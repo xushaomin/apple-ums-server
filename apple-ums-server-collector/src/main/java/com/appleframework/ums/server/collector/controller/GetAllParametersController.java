@@ -16,9 +16,9 @@ import com.appleframework.rest.response.SuccessResponse;
  * @version 1.0
  */
 @ServiceMethodBean
-public class GetAllpratmetersController extends BaseController {
+public class GetAllParametersController extends BaseController {
 
-	private static Logger logger = Logger.getLogger(UsinglogController.class);
+	private static Logger logger = Logger.getLogger(UsingLogController.class);
 
 	@ServiceMethod(method = "/ums/getAllparameters")
 	public Object usingLog(AbstractRestRequest request) {
