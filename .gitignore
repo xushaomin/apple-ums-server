@@ -13,3 +13,4 @@ hs_err_pid*
 *.classpath
 *.log
 */src/main/resources/*.properties
+*/*/.cache*
