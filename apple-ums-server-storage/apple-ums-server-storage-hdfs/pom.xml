@@ -15,6 +15,9 @@
 	<properties>
 		<scala.version>2.11.8</scala.version>
 		<scala.compat.version>2.11</scala.compat.version>
+		<flumeng.version>0.0.7.RELEASE</flumeng.version>
+		<flume.version>1.6.0</flume.version>
+		<hadoop.version>2.6.0</hadoop.version>
 	</properties>
 
 	<dependencies>
@@ -28,12 +31,12 @@
 		<dependency>
 			<groupId>com.appleframework.flume</groupId>
 			<artifactId>apple-flume-ng-node</artifactId>
-			<version>0.0.7.RELEASE</version>
+			<version>${flumeng.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.appleframework.flume</groupId>
 			<artifactId>apple-flume-hdfs-sink</artifactId>
-			<version>0.0.7.RELEASE</version>
+			<version>${flumeng.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.httpcomponents</groupId>
@@ -66,7 +69,7 @@
 		<dependency>
 			<groupId>org.apache.flume.flume-ng-sources</groupId>
 			<artifactId>flume-kafka-source</artifactId>
-			<version>1.6.0</version>
+			<version>${flume.version}</version>
 		</dependency>		
 		
 		<!-- hadoop common -->
@@ -79,7 +82,7 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
-			<version>2.6.0</version>
+			<version>${hadoop.version}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>curator-client</artifactId>
@@ -99,7 +102,7 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-core</artifactId>
-			<version>2.6.0</version>
+			<version>${hadoop.version}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>hadoop-yarn-api</artifactId>
@@ -111,7 +114,7 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-hdfs</artifactId>
-			<version>2.6.0</version>
+			<version>${hadoop.version}</version>
 		</dependency>
 
 		<dependency>
