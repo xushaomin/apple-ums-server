@@ -15,7 +15,7 @@
 	<properties>
 		<scala.version>2.11.8</scala.version>
 		<scala.compat.version>2.11</scala.compat.version>
-		<flumeng.version>0.0.7.RELEASE</flumeng.version>
+		<flumeng.version>0.0.8.RELEASE</flumeng.version>
 		<flume.version>1.6.0</flume.version>
 		<hadoop.version>2.6.0</hadoop.version>
 	</properties>
