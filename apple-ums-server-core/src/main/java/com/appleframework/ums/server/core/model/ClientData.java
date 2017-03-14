@@ -1,6 +1,8 @@
 package com.appleframework.ums.server.core.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ClientData implements Serializable {
 
@@ -243,61 +245,96 @@ public class ClientData implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ClientData [session_id=");
-		builder.append(session_id);
-		builder.append(", cellid=");
-		builder.append(cellid);
-		builder.append(", ismobiledevice=");
-		builder.append(ismobiledevice);
-		builder.append(", appkey=");
-		builder.append(appkey);
-		builder.append(", resolution=");
-		builder.append(resolution);
-		builder.append(", network=");
-		builder.append(network);
-		builder.append(", lac=");
-		builder.append(lac);
-		builder.append(", version=");
-		builder.append(version);
-		builder.append(", deviceid=");
-		builder.append(deviceid);
-		builder.append(", modulename=");
-		builder.append(modulename);
-		builder.append(", time=");
-		builder.append(time);
-		builder.append(", useridentifier=");
-		builder.append(useridentifier);
-		builder.append(", lib_version=");
-		builder.append(lib_version);
-		builder.append(", havegravity=");
-		builder.append(havegravity);
-		builder.append(", platform=");
-		builder.append(platform);
-		builder.append(", havewifi=");
-		builder.append(havewifi);
-		builder.append(", os_version=");
-		builder.append(os_version);
-		builder.append(", havebt=");
-		builder.append(havebt);
-		builder.append(", phonetype=");
-		builder.append(phonetype);
-		builder.append(", havegps=");
-		builder.append(havegps);
-		builder.append(", wifimac=");
-		builder.append(wifimac);
-		builder.append(", devicename=");
-		builder.append(devicename);
-		builder.append(", mccmnc=");
-		builder.append(mccmnc);
-		builder.append(", imsi=");
-		builder.append(imsi);
-		builder.append(", language=");
-		builder.append(language);
-		builder.append(", salt=");
-		builder.append(salt);
-		builder.append("]");
-		return builder.toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("").append(","); //serviceversion
+		buffer.append("").append(","); //name
+		buffer.append(version).append(",");
+		buffer.append(platform).append(",");
+		buffer.append(os_version).append(","); //os_version
+		buffer.append("").append(","); //osaddtional
+		buffer.append(language).append(",");
+		buffer.append(resolution).append(",");
+		buffer.append(ismobiledevice).append(",");
+		buffer.append(devicename).append(",");
+		buffer.append(deviceid).append(",");
+		buffer.append("unknown").append(","); //defaultbrowser
+		buffer.append("unknown").append(","); //javasupport
+		buffer.append("unknown").append(","); //flashversion
+		buffer.append(modulename).append(",");
+		buffer.append("unknown").append(",");//imei
+		buffer.append(imsi).append(",");
+		buffer.append(salt).append(",");
+		buffer.append(havegps).append(",");
+		buffer.append(havebt).append(",");
+		buffer.append(havewifi).append(",");
+		buffer.append(havegravity).append(",");
+		buffer.append(wifimac).append(",");
+		buffer.append("unknown").append(","); //latitude
+		buffer.append("unknown").append(","); //longitude
+		buffer.append(time).append(","); //time
+		buffer.append("").append(","); //clientip
+		buffer.append(appkey).append(","); //productkey
+		buffer.append(mccmnc).append(","); //service_supplier
+		buffer.append("unknown").append(","); //country
+		buffer.append("unknown").append(","); //region
+		buffer.append("unknown").append(","); //city
+		buffer.append("unknown").append(","); //street
+		buffer.append("unknown").append(","); //streetno
+		buffer.append("unknown").append(","); //postcode
+		buffer.append(network).append(",");
+		buffer.append("0").append(","); //isjailbroken
+		buffer.append(sdf.format(new Date()));// insertdate
+		buffer.append(useridentifier).append(",");
+		buffer.append(session_id).append(",");
+		buffer.append(lib_version).append(",");
+		return buffer.toString();
 	}
-
+	
+	public String toString(String clientip, String country, String region, String city) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("").append(","); //serviceversion
+		buffer.append("").append(","); //name
+		buffer.append(version).append(",");
+		buffer.append(platform).append(",");
+		buffer.append(os_version).append(","); //os_version
+		buffer.append("").append(","); //osaddtional
+		buffer.append(language).append(",");
+		buffer.append(resolution).append(",");
+		buffer.append(ismobiledevice).append(",");
+		buffer.append(devicename).append(",");
+		buffer.append(deviceid).append(",");
+		buffer.append("unknown").append(","); //defaultbrowser
+		buffer.append("unknown").append(","); //javasupport
+		buffer.append("unknown").append(","); //flashversion
+		buffer.append(modulename).append(",");
+		buffer.append("unknown").append(",");//imei
+		buffer.append(imsi).append(",");
+		buffer.append(salt).append(",");
+		buffer.append(havegps).append(",");
+		buffer.append(havebt).append(",");
+		buffer.append(havewifi).append(",");
+		buffer.append(havegravity).append(",");
+		buffer.append(wifimac).append(",");
+		buffer.append("unknown").append(","); //latitude
+		buffer.append("unknown").append(","); //longitude
+		buffer.append(time).append(","); //time
+		buffer.append(clientip).append(",");
+		buffer.append(appkey).append(",");
+		buffer.append(mccmnc).append(","); //service_supplier
+		buffer.append(country).append(","); //country
+		buffer.append(region).append(","); //region
+		buffer.append(city).append(","); //city
+		buffer.append("unknown").append(","); //street
+		buffer.append("unknown").append(","); //streetno
+		buffer.append("unknown").append(","); //postcode
+		buffer.append(network).append(",");
+		buffer.append("0").append(","); //isjailbroken
+		buffer.append(sdf.format(new Date()));// insertdate
+		buffer.append(useridentifier).append(",");
+		buffer.append(session_id).append(",");
+		buffer.append(lib_version).append(",");
+		return buffer.toString();
+	}
 }

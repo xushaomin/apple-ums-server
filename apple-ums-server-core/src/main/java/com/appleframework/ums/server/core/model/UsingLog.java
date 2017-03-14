@@ -1,6 +1,8 @@
 package com.appleframework.ums.server.core.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UsingLog implements Serializable {
 
@@ -99,31 +101,20 @@ public class UsingLog implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UsingLog [session_id=");
-		builder.append(session_id);
-		builder.append(", duration=");
-		builder.append(duration);
-		builder.append(", end_millis=");
-		builder.append(end_millis);
-		builder.append(", useridentifier=");
-		builder.append(useridentifier);
-		builder.append(", start_millis=");
-		builder.append(start_millis);
-		builder.append(", appkey=");
-		builder.append(appkey);
-		builder.append(", activities=");
-		builder.append(activities);
-		builder.append(", lib_version=");
-		builder.append(lib_version);
-		builder.append(", version=");
-		builder.append(version);
-		builder.append(", deviceid=");
-		builder.append(deviceid);
-		builder.append("]");
-		return builder.toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(session_id).append(",");// session_id
+		buffer.append(start_millis).append(",");// start_millis
+		buffer.append(end_millis.trim()).append(",");// end_millis
+		buffer.append(duration).append(",");// duration
+		buffer.append(activities.trim()).append(",");// activities
+		buffer.append(appkey).append(",");// appkey
+		buffer.append(version).append(",");// version
+		buffer.append(deviceid).append(",");// deviceid
+		buffer.append(useridentifier).append(",");// useridentifier
+		buffer.append(lib_version).append(",");// lib_version
+		buffer.append(sdf.format(new Date()));// insertdate
+		return buffer.toString();
 	}
-	
-	
 
 }

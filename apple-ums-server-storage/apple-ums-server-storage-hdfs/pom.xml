@@ -18,6 +18,12 @@
 	</properties>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.appleframework.ums</groupId>
+			<artifactId>apple-ums-server-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.appleframework.flume</groupId>
@@ -50,6 +56,11 @@
 			<groupId>com.appleframework.boot</groupId>
 			<artifactId>apple-boot-config</artifactId>
 			<version>${boot.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.appleframework.util</groupId>
+			<artifactId>apple-util-ip</artifactId>
 		</dependency>
 
 		<dependency>

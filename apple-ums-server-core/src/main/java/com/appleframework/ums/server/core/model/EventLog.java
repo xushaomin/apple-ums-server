@@ -7,7 +7,7 @@ import java.util.Date;
 public class EventLog implements Serializable {
 
 	private static final long serialVersionUID = 4757760187921535005L;
-	
+
 	private String session_id;
 	private String time;
 	private String useridentifier;
@@ -116,40 +116,25 @@ public class EventLog implements Serializable {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	
-	/*deviceid              varchar(128)                                
-	category                varchar(50)                                 
-	event                   varchar(50)                                 
-	label                   varchar(50)                                 
-	attachment              varchar(512)                                
-	clientdate              date                                        
-	productkey              varchar(64)                                 
-	num                     int                                         
-	event_id                int                                         
-	version                 varchar(50)                                 
-	useridentifier          varchar(64)                                 
-	session_id              varchar(32)                                 
-	lib_version             varchar(16)                                 
-	insertdate              timestamp*/
-	
+
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(deviceid.trim()).append(",");//deviceid
-		buffer.append(activity).append(",");//category
-		buffer.append(event_identifier.trim()).append(",");//event
-		buffer.append(label).append(",");//label
-		buffer.append(attachment.trim()).append(",");//attachment
-		buffer.append(time.trim()).append(",");//clientdate
-		buffer.append(appkey.trim()).append(",");//productkey
-		buffer.append(acc).append(",");//num
-		buffer.append(0).append(",");//event_id
-		buffer.append(version).append(",");//version
-		buffer.append(useridentifier.trim()).append(",");//useridentifier
-		buffer.append(session_id.trim()).append(",");//session_id
-		buffer.append(lib_version.trim()).append(",");//lib_version
-		buffer.append(sdf.format(new Date()));//insertdate
+		buffer.append(deviceid.trim()).append(",");// deviceid
+		buffer.append(activity).append(",");// category
+		buffer.append(event_identifier.trim()).append(",");// event
+		buffer.append(label).append(",");// label
+		buffer.append(attachment.trim()).append(",");// attachment
+		buffer.append(time.trim()).append(",");// clientdate
+		buffer.append(appkey.trim()).append(",");// productkey
+		buffer.append(acc).append(",");// num
+		buffer.append(0).append(",");// event_id
+		buffer.append(version).append(",");// version
+		buffer.append(useridentifier.trim()).append(",");// useridentifier
+		buffer.append(session_id.trim()).append(",");// session_id
+		buffer.append(lib_version.trim()).append(",");// lib_version
+		buffer.append(sdf.format(new Date()));// insertdate
 		return buffer.toString();
 	}
 

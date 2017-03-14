@@ -7,7 +7,7 @@ import java.util.Date;
 public class ErrorLog implements Serializable {
 
 	private static final long serialVersionUID = 6627292882340302709L;
-	
+
 	private String error_type;
 	private String time;
 	private String session_id;
@@ -116,37 +116,30 @@ public class ErrorLog implements Serializable {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	
+
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(error_type).append("\t");
-		buffer.append(time).append("\t");
-		buffer.append(session_id).append("\t");
-		buffer.append(useridentifier).append("\t");
-		buffer.append(appkey).append("\t");
-		buffer.append(devicename).append("\t");
-		buffer.append(lib_version).append("\t");
-		buffer.append(activity).append("\t");
-		buffer.append(deviceid).append("\t");
-		buffer.append(os_version).append("\t");
-		buffer.append(version).append("\t");
+		buffer.append(appkey).append(",");// appkey
+		buffer.append(devicename).append(",");// device
+		buffer.append(os_version).append(",");// os_version
+		buffer.append(activity).append(",");// activity
+		buffer.append(time).append(",");// time
+		buffer.append("").append(","); // title
+		buffer.append(stacktrace).append(",");// stacktrace
+		buffer.append(version).append(",");// version
+		buffer.append(0).append(",");// isfix
+		buffer.append(error_type).append(",");// error_type
+		buffer.append(session_id).append(",");// session_id
+		buffer.append(useridentifier).append(",");// useridentifier
+		buffer.append(lib_version).append(",");// lib_version
+		buffer.append(deviceid).append(",");// deviceid
+		buffer.append("").append(",");// dsymid
+		buffer.append("").append(",");// cpt
+		buffer.append("").append(",");// bim
 		buffer.append(sdf.format(new Date()));
 		return buffer.toString();
-		
-		/*private String error_type;
-		private String time;
-		private String session_id;
-		private String useridentifier;
-		private String appkey;
-		private String devicename;
-		private String lib_version;
-		private String stacktrace;
-		private String activity;
-		private String deviceid;
-		private String os_version;
-		private String version;*/
 	}
 
 }

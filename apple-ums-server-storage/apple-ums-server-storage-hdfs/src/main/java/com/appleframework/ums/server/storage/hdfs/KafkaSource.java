@@ -23,15 +23,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.appleframework.config.core.util.StringUtils;
 import com.appleframework.flume.ng.configuration.utils.ContextUtil;
-import com.appleframework.ums.server.storage.model.ClientData;
-import com.appleframework.ums.server.storage.model.ClientDataJson;
-import com.appleframework.ums.server.storage.model.ErrorLog;
-import com.appleframework.ums.server.storage.model.ErrorLogJson;
-import com.appleframework.ums.server.storage.model.EventLog;
-import com.appleframework.ums.server.storage.model.EventLogJson;
-import com.appleframework.ums.server.storage.model.UsingLog;
-import com.appleframework.ums.server.storage.model.UsingLogJson;
+import com.appleframework.ums.server.core.model.ClientData;
+import com.appleframework.ums.server.core.model.ClientDataJson;
+import com.appleframework.ums.server.core.model.ErrorLog;
+import com.appleframework.ums.server.core.model.ErrorLogJson;
+import com.appleframework.ums.server.core.model.EventLog;
+import com.appleframework.ums.server.core.model.EventLogJson;
+import com.appleframework.ums.server.core.model.UsingLog;
+import com.appleframework.ums.server.core.model.UsingLogJson;
+import com.appleframework.util.ip.IP;
 
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.ConsumerTimeoutException;
@@ -74,9 +76,9 @@ public class KafkaSource extends AbstractSource implements Configurable, Pollabl
 	private String topic;
 	private int batchUpperLimit;
 	private int timeUpperLimit;
-	private int consumerTimeout;
+	//private int consumerTimeout;
 	private boolean kafkaAutoCommitEnabled;
-	private Context context;
+	//private Context context;
 	private Properties kafkaProps;
 	private final List<Event> eventList = new ArrayList<Event>();
 	private KafkaSourceCounter counter;
@@ -99,10 +101,9 @@ public class KafkaSource extends AbstractSource implements Configurable, Pollabl
 					MessageAndMetadata<byte[], byte[]> messageAndMetadata = it.next();
 					kafkaMessage = messageAndMetadata.message();
 					kafkaKey = messageAndMetadata.key();
-					
+
 					String topic = messageAndMetadata.topic();
-					
-					
+
 					headers = new HashMap<String, String>();
 					headers.put(KafkaSourceConstants.TIMESTAMP, String.valueOf(System.currentTimeMillis()));
 					headers.put(KafkaSourceConstants.TOPIC, topic);
@@ -112,77 +113,51 @@ public class KafkaSource extends AbstractSource implements Configurable, Pollabl
 					if (log.isDebugEnabled()) {
 						log.debug("Message: {}", new String(kafkaMessage));
 					}
-					
+
 					String ip = new String(kafkaKey);
 					String content = new String(kafkaMessage);
 
-					
-					if(topic.equals("topic_eventlog")) {
-						
+					if (topic.equals("topic_eventlog")) {
 						EventLogJson json = JSON.parseObject(content, EventLogJson.class);
 						List<EventLog> data = json.getData();
 						for (EventLog log : data) {
-							System.out.println(log.toString());
-							
-							// Add headers to event (topic, timestamp, and key)
-							
 							event = EventBuilder.withBody(log.toString().getBytes(), headers);
 							eventList.add(event);
 						}
-						
-					} else if(topic.equals("topic_errorlog")) {
-						
+					} else if (topic.equals("topic_errorlog")) {
 						ErrorLogJson json = JSON.parseObject(content, ErrorLogJson.class);
 						List<ErrorLog> data = json.getData();
 						for (ErrorLog log : data) {
-							System.out.println(log.toString());
-							
-							// Add headers to event (topic, timestamp, and key)
-							
 							event = EventBuilder.withBody(log.toString().getBytes(), headers);
 							eventList.add(event);
 						}
-						
-					} else if(topic.equals("topic_clientdata")) {
-						
+					} else if (topic.equals("topic_clientdata")) {
 						ClientDataJson json = JSON.parseObject(content, ClientDataJson.class);
 						List<ClientData> data = json.getData();
 						for (ClientData log : data) {
-							System.out.println(log.toString());
-							
-							// Add headers to event (topic, timestamp, and key)
-							
-							event = EventBuilder.withBody(log.toString().getBytes(), headers);
+							String country, region, city;
+							try {
+								String[] regions = IP.find(ip);
+								country = StringUtils.isEmpty(regions[0]) ? "unknown" : regions[0];
+								region = StringUtils.isEmpty(regions[1]) ? "unknown" : regions[1];
+								city = StringUtils.isEmpty(regions[2]) ? "unknown" : regions[2];
+							} catch (Exception e) {
+								country = "unknown";
+								region = "unknown";
+								city = "unknown";
+							}
+							event = EventBuilder.withBody(log.toString(ip, country, region, city).getBytes(), headers);
 							eventList.add(event);
 						}
-						
-					} else if(topic.equals("topic_usinglog")) {
-						
+					} else if (topic.equals("topic_usinglog")) {
 						UsingLogJson json = JSON.parseObject(content, UsingLogJson.class);
 						List<UsingLog> data = json.getData();
 						for (UsingLog log : data) {
-							System.out.println(log.toString());
-							
-							// Add headers to event (topic, timestamp, and key)
-							
 							event = EventBuilder.withBody(log.toString().getBytes(), headers);
 							eventList.add(event);
 						}
-						
 					}
-					
-					
-					
-					
-					
-					//String content = (String)ByteUtils.fromByte(kafkaMessage);
-					/*System.out.println(key);
-					System.out.println(topic);
-					System.out.println(content);*/
-					
-					//Object object = ByteUtils.fromByte(kafkaMessage);
 
-					
 				}
 				if (log.isDebugEnabled()) {
 					log.debug("Waited: {} ", System.currentTimeMillis() - batchStartTime);
@@ -238,7 +213,7 @@ public class KafkaSource extends AbstractSource implements Configurable, Pollabl
 	 * @param context
 	 */
 	public void configure(Context context) {
-		this.context = context;
+		//this.context = context;
 		ContextUtil.fullContextValue(context);
 		batchUpperLimit = context.getInteger(KafkaSourceConstants.BATCH_SIZE, KafkaSourceConstants.DEFAULT_BATCH_SIZE);
 		timeUpperLimit = context.getInteger(KafkaSourceConstants.BATCH_DURATION_MS, KafkaSourceConstants.DEFAULT_BATCH_DURATION);
@@ -249,7 +224,7 @@ public class KafkaSource extends AbstractSource implements Configurable, Pollabl
 		}
 
 		kafkaProps = KafkaSourceUtil.getKafkaProperties(context);
-		consumerTimeout = Integer.parseInt(kafkaProps.getProperty(KafkaSourceConstants.CONSUMER_TIMEOUT));
+		//consumerTimeout = Integer.parseInt(kafkaProps.getProperty(KafkaSourceConstants.CONSUMER_TIMEOUT));
 		kafkaAutoCommitEnabled = Boolean.parseBoolean(kafkaProps.getProperty(KafkaSourceConstants.AUTO_COMMIT_ENABLED));
 
 		if (counter == null) {
