@@ -33,6 +33,14 @@
 			<artifactId>apple-flume-ng-node</artifactId>
 			<version>${flumeng.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.appleframework.flume</groupId>
+			<artifactId>apple-flume-file-channel</artifactId>
+			<version>${flumeng.version}</version>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>com.appleframework.flume</groupId>
 			<artifactId>apple-flume-hdfs-sink</artifactId>
