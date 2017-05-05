@@ -25,10 +25,13 @@ public class ClientDataServiceImpl implements ClientDataService {
 	public void save(ClientData clientData, String ip) {
 		ClientDataEntity record = new ClientDataEntity();
 		record.setClientip(ip);
-		String[] regions = IP.find(ip);
-		record.setCountry(StringUtility.isEmpty(regions[0])? "unknown" : regions[0]);
-		record.setRegion(StringUtility.isEmpty(regions[1])? "unknown" : regions[1]);
-		record.setCity(StringUtility.isEmpty(regions[2])? "unknown" : regions[2]);
+		try {
+			String[] regions = IP.find(ip);
+			record.setCountry(StringUtility.isEmpty(regions[0])? "unknown" : regions[0]);
+			record.setRegion(StringUtility.isEmpty(regions[1])? "unknown" : regions[1]);
+			record.setCity(StringUtility.isEmpty(regions[2])? "unknown" : regions[2]);
+		} catch (Exception e) {
+		}
 		try {
 			record.setDate(DateUtils.parseDate(clientData.getTime(), Contants.pattern));
 		} catch (ParseException e) {

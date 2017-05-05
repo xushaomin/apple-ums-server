@@ -77,6 +77,7 @@ public class CollectMessageReceiver extends MessageAndMetadataConsumer {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e);
 		}
 
